@@ -11,7 +11,7 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body onload="render()">
     <nav class="navbar navbar-light bg-light">
         <span class="navbar-brand mb-0 h1">Quizapp</span>
     </nav>
@@ -20,37 +20,37 @@
         <div class="card align-items-center d-flex justify-content-center" stlye="width: 30rem!important;">
             <img class="card-img-top" src="img/card-header.jpeg" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title" id="questionText"></h5>
 
-                <div class="card mb-2 answer" style="width: 28rem!important;">
-                    <div class="card-body">
+                <div class="card quiz-answer-card mb-2" onclick="answer('answer_1')" style="width: 28rem!important;">
+                    <div class="card-body" id="answer_1">
                         Antwort
                     </div>
                 </div>
 
-                <div class="card mb-2" style="width: 28rem!important;">
-                    <div class="card-body">
-                        Antwort
-                    </div>
-                </div>
-
-
-                <div class="card mb-2" style="width: 28rem!important;">
-                    <div class="card-body">
+                <div class="card quiz-answer-card mb-2" onclick="answer('answer_2')" style="width: 28rem!important;">
+                    <div class="card-body" id="answer_2">
                         Antwort
                     </div>
                 </div>
 
 
-                <div class="card mb-2" style="width: 28rem!important;">
-                    <div class="card-body">
+                <div class="card quiz-answer-card mb-2" onclick="answer('answer_3')" style="width: 28rem!important;">
+                    <div class="card-body" id="answer_3">
+                        Antwort
+                    </div>
+                </div>
+
+
+                <div class="card quiz-answer-card mb-2" onclick="answer('answer_4')" style="width: 28rem!important;">
+                    <div class="card-body" id="answer_4">
                         Antwort
                     </div>
                 </div>
 
 
                 <div class="question-footer">
-                    <b>1</b> von <b>5</b> Fragen.
+                    <b>1</b> von <b id="questionLength"></b> Fragen.
 
 
                     <button class="btn btn-primary">Nächste Frage</button>

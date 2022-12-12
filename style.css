@@ -32,3 +32,16 @@ body {
 .answer {
     width: 28rem!important;
 }
+
+.quiz-answer-card:hover{
+    cursor: pointer;
+    background-color: rgba(0, 60, 255, 0.1);
+}
+
+.bg-success{
+    background: green;
+}
+
+.bg-fail{
+    background: red;
+}
