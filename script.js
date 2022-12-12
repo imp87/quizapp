@@ -34,6 +34,7 @@ let questions = [
 ];
 
 let currentQuestion = 0;
+let CurrentQuestionNumber = 1
 
 
 function render(){
@@ -50,17 +51,41 @@ function showQuestion(){
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
+    document.getElementById('currentQuestionNumber').innerHTML = CurrentQuestionNumber;
 }
 
 function answer(selectedAnswer){
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selectedAnswer.slice(-1);
+    let idOfRightAnswer = `answer_${question['right_answer']}`
 
     if(selectedQuestionNumber == question['right_answer']){
-        alert('Richtig!')
+        console.log('Richtig!')
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-success');
     }else{
-        alert('Falsch!')
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-fail');
+        document.getElementById(selectedAnswer).parentNode.classList.remove('quiz-answer-card');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+        console.log('Falsch!')
     }
+    document.getElementById('next-Button').disabled = false;
+}
+
+function removeClasslist(){
+    document.getElementById('answer_1').parentNode.classList.remove('bg-fail');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-fail');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-fail');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-fail');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+
+function nextQuestion(){
+    document.getElementById('next-Button').disabled = true;
+    currentQuestion++
+    CurrentQuestionNumber++
+    showQuestion()
+    removeClasslist()
 }

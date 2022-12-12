@@ -22,38 +22,38 @@
             <div class="card-body">
                 <h5 class="card-title" id="questionText"></h5>
 
-                <div class="card quiz-answer-card mb-2" onclick="answer('answer_1')" style="width: 28rem!important;">
-                    <div class="card-body" id="answer_1">
+                <div class="card mb-2" onclick="answer('answer_1')" style="width: 28rem!important;">
+                    <div class="card-body quiz-answer-card" id="answer_1">
                         Antwort
                     </div>
                 </div>
 
-                <div class="card quiz-answer-card mb-2" onclick="answer('answer_2')" style="width: 28rem!important;">
-                    <div class="card-body" id="answer_2">
-                        Antwort
-                    </div>
-                </div>
-
-
-                <div class="card quiz-answer-card mb-2" onclick="answer('answer_3')" style="width: 28rem!important;">
-                    <div class="card-body" id="answer_3">
+                <div class="card mb-2" onclick="answer('answer_2')" style="width: 28rem!important;">
+                    <div class="card-body quiz-answer-card" id="answer_2">
                         Antwort
                     </div>
                 </div>
 
 
-                <div class="card quiz-answer-card mb-2" onclick="answer('answer_4')" style="width: 28rem!important;">
-                    <div class="card-body" id="answer_4">
+                <div class="card mb-2" onclick="answer('answer_3')" style="width: 28rem!important;">
+                    <div class="card-body quiz-answer-card" id="answer_3">
+                        Antwort
+                    </div>
+                </div>
+
+
+                <div class="card mb-2" onclick="answer('answer_4')" style="width: 28rem!important;">
+                    <div class="card-body quiz-answer-card" id="answer_4">
                         Antwort
                     </div>
                 </div>
 
 
                 <div class="question-footer">
-                    <b>1</b> von <b id="questionLength"></b> Fragen.
+                    <b id="currentQuestionNumber">1</b> von <b id="questionLength"></b> Fragen.
 
 
-                    <button class="btn btn-primary">Nächste Frage</button>
+                    <button disabled class="btn btn-primary" id="next-Button" onclick="nextQuestion()">Nächste Frage</button>
                 </div>
 
 
