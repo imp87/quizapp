@@ -47,3 +47,22 @@ body {
     color: white;
     background: red;
 }
+
+.trophy-end{
+    width: 50%;
+}
+
+.trophy-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-align{
+    text-align: center;
+    font-size: 22px;
+}
+
+.width-100{
+    width: 100%;
+}

@@ -34,7 +34,7 @@ let questions = [
 ];
 
 let currentQuestion = 0;
-let CurrentQuestionNumber = 1
+let correctAnswers = 0
 
 
 function render(){
@@ -44,6 +44,15 @@ showQuestion()
 
 
 function showQuestion(){
+
+    if(currentQuestion >= questions.length){
+        document.getElementById('endScreen').style = '';
+        document.getElementById('quizBody').style = 'display: none;';
+        document.getElementById('quizHeader').style = 'display: none;'
+        document.getElementById('totalQuestions').innerHTML = questions.length;
+        document.getElementById('correctAnswers').innerHTML = correctAnswers;
+    }else{
+
     let question = questions[currentQuestion];
 
     document.getElementById('questionText').innerHTML = question['question'];
@@ -51,26 +60,30 @@ function showQuestion(){
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-    document.getElementById('currentQuestionNumber').innerHTML = CurrentQuestionNumber;
+    document.getElementById('currentQuestionNumber').innerHTML = currentQuestion + 1;
+    }
 }
 
 function answer(selectedAnswer){
+
+    if(currentQuestion >= questions.length){
+
+    }else{
     let question = questions[currentQuestion];
     let selectedQuestionNumber = selectedAnswer.slice(-1);
     let idOfRightAnswer = `answer_${question['right_answer']}`
 
     if(selectedQuestionNumber == question['right_answer']){
-        console.log('Richtig!')
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-success');
+        correctAnswers++
     }else{
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-fail');
         document.getElementById(selectedAnswer).parentNode.classList.remove('quiz-answer-card');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
-        console.log('Falsch!')
     }
     document.getElementById('next-Button').disabled = false;
+    }
 }
-
 function removeClasslist(){
     document.getElementById('answer_1').parentNode.classList.remove('bg-fail');
     document.getElementById('answer_1').parentNode.classList.remove('bg-success');
@@ -85,7 +98,6 @@ function removeClasslist(){
 function nextQuestion(){
     document.getElementById('next-Button').disabled = true;
     currentQuestion++
-    CurrentQuestionNumber++
     showQuestion()
     removeClasslist()
 }

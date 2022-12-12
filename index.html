@@ -18,8 +18,19 @@
 
     <div class="content-container">
         <div class="card align-items-center d-flex justify-content-center" stlye="width: 30rem!important;">
-            <img class="card-img-top" src="img/card-header.jpeg" alt="Card image cap">
-            <div class="card-body">
+            <img id="quizHeader" class="card-img-top" src="img/card-header.jpeg" alt="Card image cap">
+
+            <div class="card-body" id="endScreen" style="display: none;">
+                <div class="text-align">
+                    Quiz beendet!
+                </div>
+
+                <div class="trophy-div"><img class="trophy-end" src="img/trophy.png"></div>
+                <div class="text-align">Du hast <b id="correctAnswers"></b> Fragen von <b id="totalQuestions"></b> richtig beantwortet!</div>
+
+            </div>
+
+            <div class="card-body" id="quizBody">
                 <h5 class="card-title" id="questionText"></h5>
 
                 <div class="card mb-2" onclick="answer('answer_1')" style="width: 28rem!important;">
