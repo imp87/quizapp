@@ -36,6 +36,11 @@ let questions = [
 let currentQuestion = 0;
 let correctAnswers = 0
 
+let AUDIO_SUCCESS = new Audio('sound/right.mp3');
+let AUDIO_FAIL = new Audio('sound/wrong.mp3');
+AUDIO_SUCCESS.volume = 0.2;
+AUDIO_FAIL.volume = 0.2;
+
 
 function render(){
 document.getElementById('questionLength').innerHTML = questions.length;
@@ -45,13 +50,23 @@ showQuestion()
 
 function showQuestion(){
 
+    let percent = currentQuestion / questions.length;
+    percent = Math.round(percent * 100);
+
     if(currentQuestion >= questions.length){
         document.getElementById('endScreen').style = '';
         document.getElementById('quizBody').style = 'display: none;';
         document.getElementById('quizHeader').style = 'display: none;'
         document.getElementById('totalQuestions').innerHTML = questions.length;
         document.getElementById('correctAnswers').innerHTML = correctAnswers;
+        document.getElementById('progress-bar').innerHTML = `${percent}%`
+        document.getElementById('progress-bar').style = `width: ${percent}%;`
     }else{
+
+        document.getElementById('progress-bar').innerHTML = `${percent}%`
+        document.getElementById('progress-bar').style = `width: ${percent}%;`
+
+        console.log(percent)
 
     let question = questions[currentQuestion];
 
@@ -74,9 +89,11 @@ function answer(selectedAnswer){
     let idOfRightAnswer = `answer_${question['right_answer']}`
 
     if(selectedQuestionNumber == question['right_answer']){
+        AUDIO_SUCCESS.play();
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-success');
         correctAnswers++
     }else{
+        AUDIO_FAIL.play();
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-fail');
         document.getElementById(selectedAnswer).parentNode.classList.remove('quiz-answer-card');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
@@ -100,4 +117,13 @@ function nextQuestion(){
     currentQuestion++
     showQuestion()
     removeClasslist()
+}
+
+function restartGame(){
+    correctAnswers = 0
+    currentQuestion = 0;
+    document.getElementById('endScreen').style = 'display: none;';
+    document.getElementById('quizBody').style = '';
+    document.getElementById('quizHeader').style = '';
+    render();
 }

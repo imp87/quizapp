@@ -20,6 +20,10 @@
         <div class="card align-items-center d-flex justify-content-center" stlye="width: 30rem!important;">
             <img id="quizHeader" class="card-img-top" src="img/card-header.jpeg" alt="Card image cap">
 
+            <div class="progress width-98">
+                <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+              </div>
+
             <div class="card-body" id="endScreen" style="display: none;">
                 <div class="text-align">
                     Quiz beendet!
@@ -27,6 +31,7 @@
 
                 <div class="trophy-div"><img class="trophy-end" src="img/trophy.png"></div>
                 <div class="text-align">Du hast <b id="correctAnswers"></b> Fragen von <b id="totalQuestions"></b> richtig beantwortet!</div>
+                <div class="restart-Button"><button class="btn btn-primary" id="restart-Button" onclick="restartGame()">Spiel neustarten</button></div>
 
             </div>
 

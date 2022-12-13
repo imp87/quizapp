@@ -63,6 +63,13 @@ body {
     font-size: 22px;
 }
 
-.width-100{
-    width: 100%;
+.width-98{
+    width: 98%;
+}
+
+.restart-Button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 12px;
 }
