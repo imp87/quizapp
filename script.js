@@ -1,3 +1,4 @@
+// Start of variables
 let questions = [
     {
   "question": "Wer hat Javascript erfunden?",
@@ -41,6 +42,8 @@ let AUDIO_FAIL = new Audio('sound/wrong.mp3');
 AUDIO_SUCCESS.volume = 0.2;
 AUDIO_FAIL.volume = 0.2;
 
+//end of variables
+
 
 function render(){
 document.getElementById('questionLength').innerHTML = questions.length;
@@ -50,33 +53,45 @@ showQuestion()
 
 function showQuestion(){
 
-    let percent = currentQuestion / questions.length;
-    percent = Math.round(percent * 100);
+   
 
-    if(currentQuestion >= questions.length){
-        document.getElementById('endScreen').style = '';
-        document.getElementById('quizBody').style = 'display: none;';
-        document.getElementById('quizHeader').style = 'display: none;'
-        document.getElementById('totalQuestions').innerHTML = questions.length;
-        document.getElementById('correctAnswers').innerHTML = correctAnswers;
-        document.getElementById('progress-bar').innerHTML = `${percent}%`
-        document.getElementById('progress-bar').style = `width: ${percent}%;`
+    if(gameIsOver()){
+        showEndscreen();
+        updateProgress()
     }else{
+        updateProgress();
+        updateToNextQuestion();
+    
+    }
+}
 
-        document.getElementById('progress-bar').innerHTML = `${percent}%`
-        document.getElementById('progress-bar').style = `width: ${percent}%;`
+function gameIsOver(){
+    return currentQuestion >= questions.length
+}
 
-        console.log(percent)
-
+function updateToNextQuestion(){
     let question = questions[currentQuestion];
-
     document.getElementById('questionText').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
     document.getElementById('currentQuestionNumber').innerHTML = currentQuestion + 1;
-    }
+}
+
+function updateProgress(){
+    let percent = currentQuestion / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress-bar').innerHTML = `${percent}%`
+    document.getElementById('progress-bar').style = `width: ${percent}%;`
+}
+
+function showEndscreen(){
+    document.getElementById('endScreen').style = '';
+    document.getElementById('quizBody').style = 'display: none;';
+    document.getElementById('quizHeader').style = 'display: none;'
+    document.getElementById('totalQuestions').innerHTML = questions.length;
+    document.getElementById('correctAnswers').innerHTML = correctAnswers;
 }
 
 function answer(selectedAnswer){
@@ -84,14 +99,14 @@ function answer(selectedAnswer){
     if(currentQuestion >= questions.length){
 
     }else{
-    let question = questions[currentQuestion];
+        let question = questions[currentQuestion];
     let selectedQuestionNumber = selectedAnswer.slice(-1);
-    let idOfRightAnswer = `answer_${question['right_answer']}`
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if(selectedQuestionNumber == question['right_answer']){
+    if(rightAnswerSelected(selectedQuestionNumber)){
         AUDIO_SUCCESS.play();
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-success');
-        correctAnswers++
+        correctAnswers++;
     }else{
         AUDIO_FAIL.play();
         document.getElementById(selectedAnswer).parentNode.classList.add('bg-fail');
@@ -101,6 +116,12 @@ function answer(selectedAnswer){
     document.getElementById('next-Button').disabled = false;
     }
 }
+
+function rightAnswerSelected(selectedQuestionNumber){
+    let question = questions[currentQuestion];
+    return selectedQuestionNumber == question['right_answer']
+}
+
 function removeClasslist(){
     document.getElementById('answer_1').parentNode.classList.remove('bg-fail');
     document.getElementById('answer_1').parentNode.classList.remove('bg-success');
@@ -115,12 +136,12 @@ function removeClasslist(){
 function nextQuestion(){
     document.getElementById('next-Button').disabled = true;
     currentQuestion++
-    showQuestion()
-    removeClasslist()
+    showQuestion();
+    removeClasslist();
 }
 
 function restartGame(){
-    correctAnswers = 0
+    correctAnswers = 0;
     currentQuestion = 0;
     document.getElementById('endScreen').style = 'display: none;';
     document.getElementById('quizBody').style = '';
