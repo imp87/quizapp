@@ -99,7 +99,7 @@ function answer(selectedAnswer){
     if(currentQuestion >= questions.length){
 
     }else{
-        let question = questions[currentQuestion];
+    let question = questions[currentQuestion];
     let selectedQuestionNumber = selectedAnswer.slice(-1);
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
